@@ -1,0 +1,20 @@
+[+] Running 14/14
+ ⠿ item-db Pulled                                                                                                                                  14.1s
+   ⠿ 92473f7ef455 Pull complete                                                                                                                     5.2s
+   ⠿ fb52bde70123 Pull complete                                                                                                                     5.3s
+   ⠿ 64788f86be3f Pull complete                                                                                                                     5.4s
+   ⠿ 33f6d5f2e001 Pull complete                                                                                                                     5.5s
+   ⠿ 570e56656608 Pull complete                                                                                                                     5.6s
+   ⠿ f518a872ab12 Pull complete                                                                                                                     5.9s
+   ⠿ c9bdae151f64 Pull complete                                                                                                                     6.9s
+   ⠿ b2c58da5f563 Pull complete                                                                                                                     7.0s
+   ⠿ 2928038a6053 Pull complete                                                                                                                     7.1s
+   ⠿ 29a16c1b79ab Pull complete                                                                                                                     7.2s
+   ⠿ efec0f86077c Pull complete                                                                                                                    11.6s
+   ⠿ 261a04726d31 Pull complete                                                                                                                    11.7s
+   ⠿ 7c4062426e72 Pull complete                                                                                                                    11.7s
+[+] Running 4/4
+ ⠿ Network proyek-pertama_app-network   Created                                                                                                     0.1s
+ ⠿ Volume "proyek-pertama_app-db"       Created                                                                                                     0.0s
+ ⠿ Container proyek-pertama-item-db-1   Started                                                                                                     1.7s
+ ⠿ Container proyek-pertama-item-app-1  Started  ~

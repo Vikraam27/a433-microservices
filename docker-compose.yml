@@ -1,0 +1,38 @@
+# version for docker compose
+version: '2.4'
+# define services in docker
+services:
+  # create item db container that contain mongodb image version 3 with restart policy always
+  item-db:
+    image: mongo:3
+    restart: always
+    # change name container
+    container_name: item-db
+    # define volume for mongodb database 
+    volumes:
+      - app-db:/data/db
+    # define network item-db
+    networks:
+      - app-network
+  # create item app container with item-app image that pull from github package with restart policy always
+  item-app:
+    image: ghcr.io/vikraam27/item-app:v1
+    restart: always
+    # change name container
+    container_name: item-app
+    # make sure item-db container run before item-app container run
+    depends_on:
+      - item-db
+    # define network used for running this container
+    networks:
+      - app-network
+    # change port 8080 to 80
+    ports:
+      - 80:8080
+#create volume app db
+volumes:
+ app-db:
+# create network app-network 
+networks:
+ app-network:
+  name: app-network
