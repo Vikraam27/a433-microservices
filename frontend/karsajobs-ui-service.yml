@@ -1,0 +1,17 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: karsajob-ns
+  name: karsajobs-ui
+  labels:
+    app: karsajobs-ui
+spec:
+  # Expose ip node
+  type: NodePort
+  selector:
+    app: karsajobs-ui
+  ports:
+  # Set port and target port to 8080
+    - port: 8000
+      targetPort: 8000

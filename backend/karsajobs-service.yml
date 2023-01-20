@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service 
+metadata:
+  namespace: karsajob-ns
+  name: karsajob-be
+  labels:
+    app: karsajob-be
+spec:
+  # Expose service on each Node's IP 
+  type: NodePort
+  selector:
+    app: karsajob-be
+  # Set ports to 8080
+  ports:
+    - port: 8080

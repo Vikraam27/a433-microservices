@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  namespace: karsajob-ns
+  name: karsajob-be
+  labels:
+    app: karsajob-be
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: karsajob-be
+  template:
+    metadata:
+      namespace: karsajob-ns
+      labels:
+        app: karsajob-be
+    spec:
+      containers:
+        - name: karsajob-be
+          image: ghcr.io/vikraam27/karsajobs:latest
+          ports:
+            - containerPort: 8080
+          # Set resource limits in each pods
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.2"
+          env:
+            - name: APP_PORT
+              value: "8080"
+            # Set mongo host as mongo service name
+            - name: MONGO_HOST
+              value: "mongo-svc"
+            #  Get mongo user from secret
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_ROOT_USERNAME
+            # Get mongo pass from secret
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_ROOT_PASSWORD
