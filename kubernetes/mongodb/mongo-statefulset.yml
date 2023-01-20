@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: karsajob-ns
+  name: mongo-statefulset
+  labels:
+    app: mongo
+spec:
+# Set only 1 pod 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+      tier: backend
+  serviceName: mongo
+  template:
+    metadata:
+      namespace: karsajob-ns
+      labels:
+        app: mongo
+        tier: backend
+    spec:
+    # Always restart pod while failure
+      restartPolicy: Always
+      containers:
+        - name: mongo
+        # Using mongo version 3 image
+          image: mongo:3
+          env:
+          # Envirotment for mongodb
+            - name: MONGO_INITDB_ROOT_USERNAME_FILE
+              value: /etc/mongo-credentials/MONGO_ROOT_USERNAME
+            - name: MONGO_INITDB_ROOT_PASSWORD_FILE
+              value: /etc/mongo-credentials/MONGO_ROOT_PASSWORD
+          ports:
+            - containerPort: 27017
+              name: mongo
+          # Volume mount for mongodb that data, config and credentials will be stored
+          volumeMounts:
+            - mountPath: /data/db
+              name: mongo-persisten-volume
+            - mountPath: /etc/mongo-credentials
+              name: mongo-credentials
+            - mountPath: /config
+              name: mongo-config-map
+      volumes:
+        - name: mongo-persisten-volume
+          persistentVolumeClaim:
+            claimName: mongo-pvc
+        - name: mongo-credentials
+          secret:
+            secretName: mongo-secret
+        - name: mongo-config-map
+          configMap:
+            name: mongo-config
+            items:
+              - key: mongo.conf
+                path: mongo.conf
