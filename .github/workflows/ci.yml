@@ -12,11 +12,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
     - name: lint-dockerfile
-      uses: luke142367/Docker-Lint-Action@v1.0.0
+      uses: actions/checkout@v3
+    - uses: hadolint/hadolint-action@v3.0.0
       with:
-        target: Dockerfile
-      env:
-        GIT_PWD: ${{ secrets.GIT_PWD }}
+        dockerfile: Dockerfile
     - name: test-app
       run: go test -v -short --count=1 $(go list ./...)
     - name: build-docker-images-karsajobs
