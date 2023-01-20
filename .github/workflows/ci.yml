@@ -10,6 +10,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: karsajobs
   TAGS: ghcr.io/vikraam27/karsajobs-ui:latest
+  PASS: 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
 
 jobs:
   lint-dockerfile:
@@ -51,7 +52,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GIT_PWD }}
+          password: ${{ env.PASS }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
