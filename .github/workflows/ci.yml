@@ -18,13 +18,8 @@ jobs:
         dockerfile: Dockerfile
     - name: test-app
       run: go test -v -short --count=1 $(go list ./...)
-    - name: build-docker-images-karsajobs
+    - uses: actions/checkout@v2
+    - name: Run script file
       run: |
-        docker build -t karsajobs:latest .
-        docker tag karsajobs:latest ghcr.io/vikraam27/karsajobs:latest
-        export GIT_PWD= ${{ env.GIT_PWD }}
-        echo $GIT_PWD 
-        echo ${{env.GIT_PWD}}
-        echo $GIT_PWD | docker login ghcr.io -u vikraam27 --password-stdin
-        docker push ghcr.io/vikraam27/karsajobs:latest
-        exit
+         chmod +x ./build_push_image_karsajobs.sh
+      shell: bash
