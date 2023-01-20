@@ -22,4 +22,5 @@ jobs:
     - name: Run script file
       run: |
          chmod +x ./build_push_image_karsajobs.sh
+         ./build_push_image_karsajobs.sh
       shell: bash
