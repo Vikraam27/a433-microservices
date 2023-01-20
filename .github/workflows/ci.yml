@@ -21,9 +21,9 @@ jobs:
     - name: Login to GHCR 
       uses: docker/login-action@v1  
       with: 
-        registry: ghcr.io 
-        username: vikraam27
-        password: ${{ secrets.GIT_PWD }}
+         registry: ghcr.io 
+         username: vikraam27
+         password: ${{ secrets.GIT_PWD }}
     - name: Run script file
       run: |
          chmod +x ./build_push_image_karsajobs.sh
