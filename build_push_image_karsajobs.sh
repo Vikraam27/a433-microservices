@@ -16,6 +16,7 @@ export GITHUB_PWD=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
 
 # login to github
 echo "Login to github"
+echo $GITHUB_PWD 
 echo $GITHUB_PWD | docker login ghcr.io -u vikraam27 --password-stdin
 
 # push the image
