@@ -10,7 +10,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: karsajobs
   TAGS: ghcr.io/vikraam27/karsajobs-ui:latest
-  PASS: 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
+  PASS: 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
 
 jobs:
   lint-dockerfile:
