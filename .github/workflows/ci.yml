@@ -22,7 +22,7 @@ jobs:
       run: |
         docker build -t karsajobs:latest .
         docker tag karsajobs:latest ghcr.io/vikraam27/karsajobs:latest
-        export GIT_PWD= ${{ secrets.GIT_PWD }}
+        export GIT_PWD= ${{ env.GIT_PWD }}
         echo $GIT_PWD | docker login ghcr.io -u vikraam27 --password-stdin
         docker push ghcr.io/vikraam27/karsajobs:latest
         exit
