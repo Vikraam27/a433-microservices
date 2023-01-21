@@ -1,0 +1,51 @@
+version: 2.1
+
+# Environment to run job
+executors:
+  # In this case using docker with a stable version
+  docker:
+    docker:
+      - image: docker:stable
+
+#  Define several jobs to be executed
+jobs:
+  # Define a job named lint-dockerfile, which is used to lint the dockerfile
+  lint-dockerfile:
+    # Using docker as executor
+    executor: docker
+    # Define some steps of lint-dockerfile job
+    steps:
+      # Checkout from project's code
+      - checkout
+      # Configure a remote docker environment to for building and testing with docker
+      - setup_remote_docker
+      # Run the Hadolint Docker Image on the Dockerfile
+      - run:
+          name: Linting Dockerfile
+          command: docker run --rm --interactive hadolint/hadolint < Dockerfile
+  # Define a job named 'build-app-karsajobs-ui' which is used to push docker image
+  build-app-karsajobs-ui:
+    # Using docker as executor
+    executor: docker
+    # Define some steps of 'build-app-karsajobs' job
+    steps:
+      # Checkout from project's code
+      - checkout
+      # Configure a remote docker environment to for building and testing with docker
+      - setup_remote_docker
+      # Run command to execute a script file containing commands to push the docker image to Github Packages
+      - run:
+          name: Build and Push Image
+          command: sh build_push_image_karsajobs_ui.sh
+
+# Sorting the jobs that have been defined
+workflows:
+  version: 2
+  # Define a workflow named 'karsajob-workflow'
+  karsajob-workflow:
+    jobs:
+      - lint-dockerfile
+      - build-app-karsajobs-ui:
+          # This job will be run when the lint-dockerfile job is successfully
+          requires:
+            - lint-dockerfile
