@@ -1,4 +1,5 @@
 server {
+# karsajob-ui
 	listen 80;
 
 	location / {
@@ -12,6 +13,7 @@ server {
 }
 
 server {
+# karsajob-backend
     listen 5000;
     location / {
        proxy_pass http://192.168.49.2:30455;
@@ -24,6 +26,7 @@ server {
 }
 
 server {
+#grafana 
     listen 4000;
     location / {
        proxy_pass http://192.168.49.2:30001;
@@ -35,6 +38,7 @@ server {
     }
 }
 server {
+#prometheus
     listen 8000;
     location / {
        proxy_pass http://192.168.49.2:30002;
@@ -45,3 +49,4 @@ server {
                 proxy_cache_bypass $http_upgrade;
     }
 }
+
