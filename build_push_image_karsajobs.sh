@@ -12,7 +12,6 @@ docker images
 echo "Tag item-app image to ghcr.io/vikraam27/karsajobs:latest"
 docker tag karsajobs:latest ghcr.io/vikraam27/karsajobs:latest
 
-export GITHUB_PWD=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
 
 # login to github
 echo "Login to github"
