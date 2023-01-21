@@ -1,0 +1,38 @@
+NAME                                                         READY   STATUS      RESTARTS       AGE
+pod/alertmanager-monitoring-kube-prometheus-alertmanager-0   2/2     Running     11 (25m ago)   24h
+pod/monitoring-grafana-7b9498bf74-42dc5                      3/3     Running     9 (25m ago)    24h
+pod/monitoring-kube-prometheus-admission-patch-mgjkp         0/1     Completed   0              24h
+pod/monitoring-kube-prometheus-operator-868dcd5cfd-b96bw     1/1     Running     2 (25m ago)    24h
+pod/monitoring-kube-state-metrics-5d8cb49c5d-42wtd           1/1     Running     29 (24m ago)   24h
+pod/monitoring-prometheus-node-exporter-7sg7f                1/1     Running     34 (25m ago)   24h
+pod/prometheus-monitoring-kube-prometheus-prometheus-0       2/2     Running     26 (25m ago)   24h
+
+NAME                                              TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+service/alertmanager-operated                     ClusterIP   None             <none>        9093/TCP,9094/TCP,9094/UDP   24h
+service/monitoring-grafana                        NodePort    10.101.138.107   <none>        80:30001/TCP                 24h
+service/monitoring-kube-prometheus-alertmanager   ClusterIP   10.103.54.71     <none>        9093/TCP                     24h
+service/monitoring-kube-prometheus-operator       ClusterIP   10.104.25.40     <none>        443/TCP                      24h
+service/monitoring-kube-prometheus-prometheus     NodePort    10.105.119.145   <none>        9090:30002/TCP               24h
+service/monitoring-kube-state-metrics             ClusterIP   10.111.130.75    <none>        8080/TCP                     24h
+service/monitoring-prometheus-node-exporter       ClusterIP   10.98.28.193     <none>        9100/TCP                     24h
+service/prometheus-operated                       ClusterIP   None             <none>        9090/TCP                     24h
+
+NAME                                                 DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+daemonset.apps/monitoring-prometheus-node-exporter   1         1         1       1            1           <none>          24h
+
+NAME                                                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/monitoring-grafana                    1/1     1            1           24h
+deployment.apps/monitoring-kube-prometheus-operator   1/1     1            1           24h
+deployment.apps/monitoring-kube-state-metrics         1/1     1            1           24h
+
+NAME                                                             DESIRED   CURRENT   READY   AGE
+replicaset.apps/monitoring-grafana-7b9498bf74                    1         1         1       24h
+replicaset.apps/monitoring-kube-prometheus-operator-868dcd5cfd   1         1         1       24h
+replicaset.apps/monitoring-kube-state-metrics-5d8cb49c5d         1         1         1       24h
+
+NAME                                                                    READY   AGE
+statefulset.apps/alertmanager-monitoring-kube-prometheus-alertmanager   1/1     24h
+statefulset.apps/prometheus-monitoring-kube-prometheus-prometheus       1/1     24h
+
+NAME                                                   COMPLETIONS   DURATION   AGE
+job.batch/monitoring-kube-prometheus-admission-patch   1/1           11s        24h
